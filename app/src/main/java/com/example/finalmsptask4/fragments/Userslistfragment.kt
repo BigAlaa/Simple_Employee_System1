@@ -10,12 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.finalmsptask4.R
 import com.example.finalmsptask4.adapter.ListAdapter
+import com.example.finalmsptask4.adapter.Onclicked
+import com.example.finalmsptask4.data.User
 import com.example.finalmsptask4.data.UserController
 import com.example.finalmsptask4.data.UserDatabase
 import com.example.finalmsptask4.databinding.FragmentUserslistfragmentBinding
 
 
-class userslistfragment : Fragment() {
+class userslistfragment : Fragment(),Onclicked {
     private var binding: FragmentUserslistfragmentBinding? = null
     private val _binding get() = binding!!
 
@@ -42,6 +44,8 @@ class userslistfragment : Fragment() {
         val recyclerView =binding.recyclerView
         recyclerView.adapter=adapter
         recyclerView.layoutManager=LinearLayoutManager(requireContext())
+        adapter.onclicked=this
+
         userController.usersList.observe(viewLifecycleOwner,Observer{user -> adapter.setData(user)})
 
         floatingActionButton.setOnClickListener{
@@ -49,6 +53,11 @@ class userslistfragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun OnClicked(user: User) {
+        findNavController().navigate(R.id.action_userslistfragment_to_update_deletefragment)
+
     }
 
 }

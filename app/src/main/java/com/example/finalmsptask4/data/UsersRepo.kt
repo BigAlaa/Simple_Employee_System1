@@ -6,7 +6,9 @@ class UsersRepo(private val userDao: UserDao) {
     fun adduser(user :User){
         userDao.adduser(user)
     }
-
+    fun deleteuser(user: User){
+        userDao.deleteuser(user)
+    }
 
 
 }

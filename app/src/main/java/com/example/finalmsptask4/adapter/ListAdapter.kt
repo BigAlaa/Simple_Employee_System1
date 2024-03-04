@@ -8,12 +8,14 @@ import androidx.navigation.NavDirections
 
 import android.widget.TextView
 import androidx.fragment.app.ListFragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalmsptask4.R
 import com.example.finalmsptask4.data.User
 import com.example.finalmsptask4.data.UserController
 import com.example.finalmsptask4.data.UserDatabase
 import com.example.finalmsptask4.fragments.userslistfragment
+import com.example.finalmsptask4.fragments.userslistfragmentDirections
 import kotlin.coroutines.coroutineContext
 
 class ListAdapter :RecyclerView.Adapter<ListAdapter.MyViewHolder>(){
@@ -33,6 +35,7 @@ class ListAdapter :RecyclerView.Adapter<ListAdapter.MyViewHolder>(){
         var person:User=userlist.get(position)
 
         holder.bind(person)
+
 
     }
 
@@ -60,8 +63,9 @@ class ListAdapter :RecyclerView.Adapter<ListAdapter.MyViewHolder>(){
             Phonenumber.text = user.phonenumber
 
             itemView.setOnClickListener {
-
-                onclicked.OnClicked(user)
+            val action=userslistfragmentDirections.actionUserslistfragmentToUpdateDeletefragment(user)
+               itemView.findNavController().navigate(action)
+                /*onclicked.OnClicked(user)*/
             }
 
         }

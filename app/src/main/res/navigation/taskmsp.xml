@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_update_deletefragment_to_userslistfragment"
             app:destination="@id/userslistfragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.example.finalmsptask4.data.User" />
 
     </fragment>
-</navigation>
+  </navigation>

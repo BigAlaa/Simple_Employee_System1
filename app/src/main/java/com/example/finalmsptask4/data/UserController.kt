@@ -9,7 +9,9 @@ class UserController(userDao: UserDao){
     fun adduser(user:User){
     usersRepo.adduser(user)
     }
-
+    fun deleteuser(user: User){
+        usersRepo.deleteuser(user)
+    }
 
     init {
        usersList=usersRepo.readalldata
